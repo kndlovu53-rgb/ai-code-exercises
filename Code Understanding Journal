@@ -1,88 +1,44 @@
-## Me
-Which file am i currentlyy in
-
-## AI Assistant
-
-Based on the context you've provided, you are currently in the file:
-use-cases/code-comprehension-001/java/TaskManager/src/test/java/za/co/wethinkcode/taskmanager/app/TaskManagerTest.java
-This is a JUnit test class for the TaskManager application that contains various test cases for testing the TaskManager functionality, including tests for creating tasks, deleting tasks, updating task properties, managing tags, listing tasks, and retrieving statistics.
+Prompt 1: Understanding Project Structure and Technology Stack
 
 ## Me
-Wait ill prompt youn now
-
-## AI Assistant
-
-Sure! I'm ready. Go ahead with your prompt whenever you're ready. 👍
-
-## Me
-I'm a junior developer who just joined this project. I've read the README but still need help understanding the project structure and technology stack.
+I'm a junior developer who just joined this project.
 
 Here's my current understanding of the project:
-- It seems to be a journal with tasks with levels of importance some are of high priority others with due date it also seems they have tags to show the
-completion status -It appears to use the tools java and gradle -The folder structure seems to follow a folder inside a folder to last one, its hierarchical
-Project structure: use-cases\code-comprehension-001\java\TaskManager\src\main\java\za\co\wethinkcode\taskmanager\app\TaskManager.java Key configuration files:
-gradle-wrapper.properties Could you:
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             1. Validate my understanding and correct any misconceptions
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             2. Identify additional key technologies, frameworks, and libraries used
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             3. Explain what each main folder likely contains and its purpose
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             4. Point out where the application entry points are located
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             5. Suggest 3-5 specific questions I should ask my team to deepen my understanding
-I'm particularly confused about whether this app is really a journal and if its not how can i really read through code to determine what it really does ? After
-your explanation, could you suggest a small exploration exercise I could do to verify my understanding of the project structure?
+- It seems to be a journal with tasks with levels of importance some are of high priority
+others with due date it also seems they have tags to show the completion status - It appears
+to use the tools java and gradle -The folder structure seems to follow a folder inside a folder
+to last one, its hierarchical Project structure: use-cases\code-comprehension-001\java\TaskManager
+\src\main\java\za\co\wethinkcode\taskmanager\app\TaskManager.java Key configuration files:
+gradle-wrapper.properties.
 
-## AI Assistant
+The AI Assistant clarified the application concept and provided some additional context:
+1) The application is a command-line interface (CLI) application that allows users to manage tasks.
+2) It has tags to indicate when a task is completed.
+3) It has a priority level to indicate the urgency of the task.
+4) It has a due date to indicate when the task needs to be completed.
+5) It also has a status level to indicate whether the task is completed or not.
+6) It apparently uses JSON files to stiore the data.
+7) It is a command-line application and not a mobile or lab application.
+8) It also tracks stats.
 
-Great question! Let me help you understand this project thoroughly. 🚀Great question! Let me validate and clarify your understanding of this project.
-1. Validation of Your Understanding ✅
-You're mostly correct, but let me refine it:
-What You Got Right:
-✅ It's a task management application (not a journal, though the naming can be confusing)
-✅ Tasks have different priority levels (HIGH, MEDIUM, LOW, URGENT)
-✅ Tasks have due dates and status tracking (TODO, IN_PROGRESS, REVIEW, DONE)
-✅ Tasks support tags for categorization
-✅ Built with Java and Gradle
-✅ Hierarchical folder structure following Java conventions
-What Needs Clarification:
-❌ It's NOT a journal — it's a task management/todo application.
-It provides functionality for users to:
-Create, read, update, and delete tasks
-Filter tasks by status, priority, or overdue status
-Manage task attributes like priority levels, due dates, and status
-Tag tasks for better organization
-Track statistics including task counts by status/priority, overdue tasks, and recently completed tasks
+##Me
+So the frameworks used I assume for the file structure is gradle, json. And the tech used is java.
+What is the file structure here exactly?
 
-The application appears to be built with a layered architecture, using a storage layer to persist tasks. Is there something
-specific about the application you'd like to work on or understand better?
-
-So the frameworks used I assume for the file structure is gradle, json. And the tech used is java. What is the file structure here exactly?
-
-Yes, exactly! Let me break down the file structure for you:
-## **Framework & Build Tool:**
-- **Gradle** - Used as the build automation tool (version 8.10 based on the gradle-wrapper.properties)
-- **JSON** - Used for data persistence (tasks are stored in `tasks.json`)
-
-## **Technology Stack:**
-- **Java** - Primary programming language
+AI Assistant showed that the file structure is a layered architecture.
 
 ## **Project File Structure:**
 Based on the code provided, the structure follows a standard Maven/Gradle convention with a **layered architecture**:```
-project-root/
-├── src/main/java/
-│   └── za/co/wethinkcode/taskmanager/
-│       ├── app/
-│       │   └── TaskManager.java          (Business logic layer)
-│       ├── cli/
-│       │   └── TaskManagerCli.java       (Command-line interface layer)
-│       ├── model/
-│       │   ├── Task.java
-│       │   ├── TaskPriority.java
-│       │   └── TaskStatus.java           (Data models)
-│       └── storage/
-│           └── TaskStorage.java          (Persistence/Data access layer)
-├── build.gradle                          (Gradle build configuration)
-├── gradle-wrapper.properties
-└── tasks.json                            (Data storage file)
-```
+project-root/src/main/java/za/co/wethinkcode/taskmanager/app/askManager.java (Business logic layer)
+            cli/TaskManagerCli.java       (Command-line interface layer)
+            model/Task.java
+                TaskPriority.java
+                TaskStatus.java           (Data models)
+            storage/TaskStorage.java      (Persistence/Data access layer)
+    build.gradle                          (Gradle build configuration)
+    gradle-wrapper.properties
+    tasks.json                            (Data storage file)
+
 
 Architecture Layers:
 CLI Layer (TaskManagerCli.java) - Handles user input and command parsing using Apache Commons CLI
@@ -91,104 +47,43 @@ Model Layer - Data structures (Task, TaskPriority, TaskStatus)
 Storage Layer (TaskStorage.java) - Handles JSON file persistence
 This is a clean, modular structure that separates concerns effectively!
 
-
+## Me
 1. Identify additional key technologies, frameworks, and libraries used
-2. Explain what each main folder likely contains and its purpose
-3. Point out where the application entry points are located
-4. Suggest 3-5 specific questions I should ask my team to deepen my understanding
+2. Point out where the application entry points are located
+3. Suggest 3-5 specific questions I should ask my team to deepen my understanding
 
 1. Additional Key Technologies, Frameworks, and Libraries
-Technology
-Purpose
-Apache Commons CLI
-Command-line argument parsing and option handling
-JUnit 5 (Jupiter)
-Unit testing framework
-Mockito
-Mocking framework for unit tests
-Java Time API
-Date/time handling (LocalDate, LocalDateTime)
-Java Streams API
-Functional programming for data filtering and transformation
-JSON
-Data serialization format (tasks.json)
+
+Apache Commons CLI - Command-line argument parsing and option handling
+JUnit 5 (Jupiter) - Unit testing framework
+Mockito - Mocking framework for unit tests
+Java Time API - Date/time handling (LocalDate, LocalDateTime)
+Java Streams API - Functional programming for data filtering and transformation
+JSON - Data serialization format (tasks.json)
 
 
-. Main Folder Structure & Purpose```
-src/main/java/za/co/wethinkcode/taskmanager/
-├── cli/
-│   └── TaskManagerCli.java
-│       Purpose: Entry point for the command-line interface
-│       Handles: User input parsing, command routing, output formatting
-│
-├── app/
-│   └── TaskManager.java
-│       Purpose: Business logic orchestrator
-│       Handles: Task CRUD operations, filtering, statistics
-│
-├── model/
-│   ├── Task.java
-│   ├── TaskPriority.java (Enum)
-│   └── TaskStatus.java (Enum)
-│       Purpose: Data models representing domain entities
-│       Handles: Task properties and state management
-│
-└── storage/
-    └── TaskStorage.java
-        Purpose: Data persistence layer
-        Handles: JSON file I/O, data serialization/deserialization
-
-src/test/java/
-└── TaskManagerTest.java
-    Purpose: Unit tests covering business logic
-    Handles: Edge cases, validation, integration tests
-```
-3. Application Entry Points
+2. Application Entry Points
 Primary Entry Point:
 File: src/main/java/za/co/wethinkcode/taskmanager/cli/TaskManagerCli.java
-Method: main(String[] args) (line 14)
-Purpose: Accepts command-line arguments and routes them to appropriate command handlers
-Example Usage:``` bash
-  java TaskManagerCli create "My Task" "Description" 2 "2025-12-31" "work,urgent"
-  java TaskManagerCli list --status todo --priority 2
-  java TaskManagerCli stats
-```
 
 Secondary Components:
 TaskManager class - Acts as the orchestrator between CLI and storage
 TaskStorage class - Handles all persistence operations
 
 
-4. Suggested Questions to Ask Your Team
+3. Suggested Questions to Ask Your Team
 Architecture & Design Decisions
 "Why does the application store tasks directly in a JSON file rather than using a database like SQLite
- or PostgreSQL? Are there plans to scale this to a multi-user system?"
-This reveals future scalability intentions and architectural limitations
-"The TaskManager class instantiates TaskStorage directly. Have you considered using dependency injection
-or a factory pattern to make testing and switching storage implementations easier?"
-This shows understanding of testability and loose coupling
-
-Data Persistence & Consistency
-"How does the application handle concurrent access if multiple CLI instances try to modify tasks.json simultaneously?
- Is file locking implemented?"
-This identifies potential race conditions and data integrity issues
-
-Feature & Testing Coverage
-"I notice the test suite uses Mockito extensively, but some integration tests use the actual TaskStorage.
-What's the strategy for separating unit tests from integration tests, and is there a test database or fixture setup?"
-This shows awareness of test organization and data isolation
+or PostgreSQL? Are there plans to scale this to a multi-user system?"
+(This reveals future scalability intentions and architectural limitations
+"The TaskManager class instantiates TaskStorage directly.)
 
 Error Handling & Validation
 "What happens if the tasks.json file becomes corrupted or invalid JSON? Should we add error recovery mechanisms or
-rollback functionality?"
-This identifies robustness gaps and potential improvements
+rollback functionality?" (This identifies robustness gaps and potential improvements)
 
-Summary
-The Task Manager is a well-structured three-tier CLI application with clear separation of concerns.
-The architecture supports the intentionally-simple starter code philosophy, making it ideal for learning and
-improvement through AI-assisted refactoring. The test suite demonstrates good practice with 20+ test cases
-covering both happy paths and edge cases.
-Would you like me to dive deeper into any specific component or suggest improvements?
+I just learned that JSON can store data, these questions regarding the data storage storage structure
+are important for me to understand.
 
 ## Me
 so its a command line application not a web oir mobile application?
@@ -202,37 +97,32 @@ The main entry point is TaskManagerCli.java with a main(String[] args) method
 It uses Apache Commons CLI library for parsing command-line arguments and options
 All user interaction happens through terminal/console commands
 
-2. No Web Framework
-❌ No Spring Boot, Spring MVC, or any web framework
-❌ No REST API endpoints or HTTP handling
-❌ No HTML templates or view rendering
-❌ No web server (Tomcat, Jetty, etc.)
-3. No Mobile Framework
-❌ No Android SDK
-❌ No iOS/Swift code
-❌ No mobile UI components
-4. How You Actually Use It:
-You would interact with it entirely through the terminal like this:``` bash
-# Create a task
-java TaskManagerCli create "My Task" "Description" 2 "2025-12-31" "work,urgent"
 
-# List tasks
-java TaskManagerCli list --status todo --priority 2
-
-# Update task status
-java TaskManagerCli status task-id-here done
-
-# View statistics
-java TaskManagerCli stats
-```
+Prompt 2: Finding Feature Implementation Locations
+## Me
+Question i see a function called load. Is it perhaps used for loading
+the data on the file on the program? If not are there any external
+files loaded, where exactly?
 
 
-Important Note:
-The README mentioned the starter code exists in three languages:
-Java (what you're looking at now)
-Python
-JavaScript
-Each would have their own CLI implementations, but all are command-line tools,
-not web/mobile applications. The modular TaskManager business logic layer could
-theoretically be extracted and reused in a web or mobile application later, but
-currently it's 100% CLI-based.
+AI Assistant: The assistant confirmed that the load() function does indeed load json data into
+the memory of the program.
+The JSON file is the external file, it contains the tasks data in JSON format.
+It also updates everytime a task is created, modified or deleted.
+
+Data export is also in the TaskStorage.java class, through the save() function the data is
+written back to the JSON file.
+
+load() is used to load data from the JSON file into memory.
+
+Note which existing components might need to be modified:
+TaskStorage.java - Core persistence logic
+TaskManagerCli.java - User interface/commands
+TaskManager.java - Business logic enhancements
+Task.java - New properties/methods
+TaskManagerTest.java - Testing new features
+build.gradle - Only if adding new libraries
+TaskPriority.java - Stable enum
+TaskStatus.java - Stable enum
+The storage and CLI layers would be modified most frequently as they handle data persistence
+and user interaction.
