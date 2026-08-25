@@ -96,3 +96,143 @@ This is a clean, modular structure that separates concerns effectively!
 2. Explain what each main folder likely contains and its purpose
 3. Point out where the application entry points are located
 4. Suggest 3-5 specific questions I should ask my team to deepen my understanding
+
+1. Additional Key Technologies, Frameworks, and Libraries
+Technology
+Purpose
+Apache Commons CLI
+Command-line argument parsing and option handling
+JUnit 5 (Jupiter)
+Unit testing framework
+Mockito
+Mocking framework for unit tests
+Java Time API
+Date/time handling (LocalDate, LocalDateTime)
+Java Streams API
+Functional programming for data filtering and transformation
+JSON
+Data serialization format (tasks.json)
+
+
+. Main Folder Structure & Purpose```
+src/main/java/za/co/wethinkcode/taskmanager/
+├── cli/
+│   └── TaskManagerCli.java
+│       Purpose: Entry point for the command-line interface
+│       Handles: User input parsing, command routing, output formatting
+│
+├── app/
+│   └── TaskManager.java
+│       Purpose: Business logic orchestrator
+│       Handles: Task CRUD operations, filtering, statistics
+│
+├── model/
+│   ├── Task.java
+│   ├── TaskPriority.java (Enum)
+│   └── TaskStatus.java (Enum)
+│       Purpose: Data models representing domain entities
+│       Handles: Task properties and state management
+│
+└── storage/
+    └── TaskStorage.java
+        Purpose: Data persistence layer
+        Handles: JSON file I/O, data serialization/deserialization
+
+src/test/java/
+└── TaskManagerTest.java
+    Purpose: Unit tests covering business logic
+    Handles: Edge cases, validation, integration tests
+```
+3. Application Entry Points
+Primary Entry Point:
+File: src/main/java/za/co/wethinkcode/taskmanager/cli/TaskManagerCli.java
+Method: main(String[] args) (line 14)
+Purpose: Accepts command-line arguments and routes them to appropriate command handlers
+Example Usage:``` bash
+  java TaskManagerCli create "My Task" "Description" 2 "2025-12-31" "work,urgent"
+  java TaskManagerCli list --status todo --priority 2
+  java TaskManagerCli stats
+```
+
+Secondary Components:
+TaskManager class - Acts as the orchestrator between CLI and storage
+TaskStorage class - Handles all persistence operations
+
+
+4. Suggested Questions to Ask Your Team
+Architecture & Design Decisions
+"Why does the application store tasks directly in a JSON file rather than using a database like SQLite
+ or PostgreSQL? Are there plans to scale this to a multi-user system?"
+This reveals future scalability intentions and architectural limitations
+"The TaskManager class instantiates TaskStorage directly. Have you considered using dependency injection
+or a factory pattern to make testing and switching storage implementations easier?"
+This shows understanding of testability and loose coupling
+
+Data Persistence & Consistency
+"How does the application handle concurrent access if multiple CLI instances try to modify tasks.json simultaneously?
+ Is file locking implemented?"
+This identifies potential race conditions and data integrity issues
+
+Feature & Testing Coverage
+"I notice the test suite uses Mockito extensively, but some integration tests use the actual TaskStorage.
+What's the strategy for separating unit tests from integration tests, and is there a test database or fixture setup?"
+This shows awareness of test organization and data isolation
+
+Error Handling & Validation
+"What happens if the tasks.json file becomes corrupted or invalid JSON? Should we add error recovery mechanisms or
+rollback functionality?"
+This identifies robustness gaps and potential improvements
+
+Summary
+The Task Manager is a well-structured three-tier CLI application with clear separation of concerns.
+The architecture supports the intentionally-simple starter code philosophy, making it ideal for learning and
+improvement through AI-assisted refactoring. The test suite demonstrates good practice with 20+ test cases
+covering both happy paths and edge cases.
+Would you like me to dive deeper into any specific component or suggest improvements?
+
+## Me
+so its a command line application not a web oir mobile application?
+
+## AI Assistant
+
+Yes, exactly correct! This is a command-line (CLI) application, not a web or mobile application.
+Key Evidence:
+1. Entry Point is CLI-Based
+The main entry point is TaskManagerCli.java with a main(String[] args) method
+It uses Apache Commons CLI library for parsing command-line arguments and options
+All user interaction happens through terminal/console commands
+
+2. No Web Framework
+❌ No Spring Boot, Spring MVC, or any web framework
+❌ No REST API endpoints or HTTP handling
+❌ No HTML templates or view rendering
+❌ No web server (Tomcat, Jetty, etc.)
+3. No Mobile Framework
+❌ No Android SDK
+❌ No iOS/Swift code
+❌ No mobile UI components
+4. How You Actually Use It:
+You would interact with it entirely through the terminal like this:``` bash
+# Create a task
+java TaskManagerCli create "My Task" "Description" 2 "2025-12-31" "work,urgent"
+
+# List tasks
+java TaskManagerCli list --status todo --priority 2
+
+# Update task status
+java TaskManagerCli status task-id-here done
+
+# View statistics
+java TaskManagerCli stats
+```
+
+
+Important Note:
+The README mentioned the starter code exists in three languages:
+Java (what you're looking at now)
+Python
+JavaScript
+Each would have their own CLI implementations, but all are command-line tools,
+not web/mobile applications. The modular TaskManager business logic layer could
+theoretically be extracted and reused in a web or mobile application later, but
+currently it's 100% CLI-based.
