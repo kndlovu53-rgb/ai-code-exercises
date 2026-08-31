@@ -128,3 +128,52 @@ The storage and CLI layers would be modified most frequently as they handle data
 and user interaction.
 
 I was asked to add a  "Task Export to CSV" feature, but I'm not sure where the code for this feature lives.
+I'll help you locate where the "Task Export to CSV" feature should be implemented.
+Let me first explore the project structure to get a better understanding of the codebase.
+Based on my investigation, the **"Task Export to CSV" feature doesn't exist yet** in your codebase.
+This is a new feature you need to add.
+
+## Where to Add CSV Export
+### 1. **Storage Layer** (Primary Location)
+Add the CSV export method to : `TaskStorage.java`
+- This is the logical place since it handles all data persistence
+
+### 2. **Business Logic Layer** (Wrapper)
+Add a corresponding method to : `TaskManager.java`
+- This acts as a wrapper around the storage layer
+
+### 3. **CLI Layer** (User Interface)
+Add a new command handler to : `TaskManagerCli.java`
+- Add an `export` command that users can call from the terminal
+
+## Recommended Implementation Path
+1. **Start with `TaskStorage.java`** - implement the core CSV writing logic
+2. **Add to `TaskManager.java`** - create a public wrapper method
+3. **Update `TaskManagerCli.java`** - add the CLI command handler and help text
+4. **Write tests in `TaskManagerTest.java`** - test the new functionality
+
+
+TaskStorage
+writeCsvFile(String filePath)
+Handles file I/O and CSV formatting. Accesses all tasks from the tasks map.
+
+TaskManager
+exportTasksToCsv(String filePath)
+Wrapper method that calls storage layer. Keeps business logic organized.
+
+TaskManagerCli
+handleExportCommand(String[] args)
+User interface. Parses arguments, calls TaskManager, gives feedback.
+
+TaskManagerTest
+test_exportTasksToCsv_*()
+Unit tests for the feature (success cases, error handling, edge cases).
+
+Users can now save their tasks in a format that spreadsheet applications understand,
+making it easier to share, print, and analyze task data.
+
+✅ Extract to CsvExporter class - Keeps code cleaner and more testable
+✅ Add format filtering - Users want to export specific subsets of tasks
+✅ Better error feedback - Show how many tasks were exported + clear error messages
+
+Prompt 3: Understanding Domain Models and Business Concepts
