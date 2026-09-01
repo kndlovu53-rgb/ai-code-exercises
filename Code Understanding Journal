@@ -177,3 +177,112 @@ making it easier to share, print, and analyze task data.
 ✅ Better error feedback - Show how many tasks were exported + clear error messages
 
 Prompt 3: Understanding Domain Models and Business Concepts
+The core entity classes are: TaskStorage: Responsible for storing the tasks recorded in the program.
+TaskStatus: Will keep track how the task status changes
+TaskPriority: Responsible for tracking task priority
+Task: Shows the task
+TaskManagerCli: Manages the tasks and user interaction.
+
+What does the task class do ?
+Simple Answer
+The Task class is like a "Post-it Note" - it holds all the information about a single to-do item
+and provides ways to modify and query that information. The TaskManager uses it to create, update,
+and manage all your tasks.
+
+
+I'd like you to act as a senior developer who deeply understands our codebase's domain model.
+I'm a junior developer trying to make sense of the business logic and domain concepts in this
+application.
+
+Here's what I've found in the codebase:
+```
+Good! You've correctly identified the core entities. Let me provide you with a senior developer's
+perspective on the domain model and help you understand the business logic flow.
+
+Domain Model Deep Dive
+1. The Domain Concepts (Business Reality)
+Before we talk about code, let's understand what we're modeling:
+Core Concept: A Task (Work Item)
+In the real world, a
+task is a unit of work that needs to be done. It has:
+Identity - A unique ID to distinguish it from other tasks
+Description - What needs to be done (title + details)
+Urgency - How important/critical it is (priority)
+Progress - Where it stands in its lifecycle (status)
+Timeline - When it should be finished (due date)
+Organization - How to categorize it (tags)
+Timestamps - When it was created and completed
+
+Key Question: "What are we storing and managing?" Answer: Tasks
+
+Key Question: "What are the allowed states a task can be in?"
+Answer: Defined by these enums - no invalid states allowed
+
+Key Question: "How do we persist tasks between sessions?"
+Answer: Serialize them to JSON and deserialize on startup
+
+
+CLI
+Parse commands, format output
+How to talk to TaskManager
+Database, JSON
+
+TaskManager
+Validate input, apply rules
+How to query/update tasks
+Files, serialization
+
+TaskStorage
+Persist data, retrieve data
+JSON format, HashMap
+Business logic, UI
+
+Task
+Hold data, report properties
+
+You've identified the architectural layers properly:
+TaskStorage = Data access layer
+TaskStatus/TaskPriority = Business constraints
+Task = Domain entity
+TaskManager = Business logic orchestrator
+TaskManagerCli = User interface
+No misconceptions. You're thinking about this correctly
+
+The domain has these concepts:
+
+Task: A unit of work
+Progress/Status: Where in lifecycle
+Urgency/Priority: Business impact
+Deadline/Due Date: Time constraint
+Labels/Tags: Organization
+Timestamps: Accountability
+
+Key insight: These aren't just data fields—they enforce business workflows.
+
+Domain Patterns You're Using
+Pattern 1: Aggregate Root
+Task is the aggregate root—all changes go through it.
+
+Pattern 2: Value Objects
+TaskStatus, TaskPriority are enums = value objects with no identity.
+
+Pattern 3: Persistence Ignorance
+Task doesn't know about JSON files. TaskStorage handles that.
+
+Domain-Specific Terminology
+
+updateTaskStatus()  Advance task through lifecycle
+markAsDone() Special action: mark complete + record time
+isOverdue() Business rule: due date < now
+getStatistics() Metrics: productivity measurements
+Priority enum Defines work urgency hierarchy
+Misconception to avoid: These aren't random methods—they model real business workflows.
+
+Missing: Domain Events
+When a task is marked DONE, you should trigger:
+"TaskCompleted" event
+Update completion timestamp
+Notify user
+Currently just sets status. Clean but basic.
+
+his is what "domain modeling" means: Understanding the real-world behavior you're codifying.
