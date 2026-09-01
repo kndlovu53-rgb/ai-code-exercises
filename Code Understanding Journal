@@ -1,3 +1,5 @@
+1. Knowing Where to Start
+
 Prompt 1: Understanding Project Structure and Technology Stack
 
 ## Me
@@ -285,4 +287,99 @@ Update completion timestamp
 Notify user
 Currently just sets status. Clean but basic.
 
-his is what "domain modeling" means: Understanding the real-world behavior you're codifying.
+his is what "domain modeling" means: Understanding the real-world
+behavior you're codifying.
+
+2. Understanding Existing Code Functionality
+
+Prompt 1: Understand how a specific feature works
+## Me
+I'm trying to understand how Gradle works in  the codebase.
+
+## AI Assistant
+
+Understanding Gradle in This Codebase
+What Gradle Does (In Simple Terms)
+Gradle is a build automation tool. Think of it as a recipe that tells your computer:
+Where to find source code
+W
+hat libraries to download
+How to compile everything
+How to run tests
+How to package the final application
+
+
+The file you found (gradle-wrapper.properties) is the Gradle Wrapper configuration.
+Solution: The wrapper downloads the exact same Gradle version for everyone.
+
+Why Gradle Matters for Your Project
+Reproducible Builds: Everyone builds the same way
+Dependency Management: Libraries downloaded automatically
+Testing Automation: Run all tests with one command
+IDE Integration: IntelliJ/VS Code use Gradle to understand your project
+CI/CD Ready: Easy to automate in pipelines
+
+Gradle is the engine that:
+Downloads your libraries (gson, junit, mockito, etc.)
+Compiles your Java code
+Runs your tests
+Packages everything into a runnable app
+The wrapper ensures everyone on your team uses the exact same Gradle version (8.10).
+
+what does the 8.10 grdakle folder include?
+Summary: The 8.10 Folder Contains
+✅ Executables (bin/) - How to run Gradle
+✅ Libraries (lib/) - Everything Gradle needs to work
+✅ Documentation (docs/) - Help files
+Total: ~300-400 MB of tools that enable your build process
+Key insight: It's basically a pre-packaged Java application that knows how to compile
+Java projects, manage dependencies, and run tests.
+
+Prompt 2: Deepen understanding of a codebase
+# Deep Dive: `private final Gson gson;`
+        ## **1. What This Component Actually Does (Simple Terms)**
+        **Gson** is a **Java-to-JSON translator**.
+Think of it like a **language interpreter**:
+
+Gson does two things:
+Serialization: Convert Java objects → JSON text (save to file)
+Deserialization: Convert JSON text → Java objects (load from file)
+
+Gson benefits:
+✅ Handles complex types (dates, nested objects)
+✅ No manual parsing (error-prone)
+✅ Standard JSON format (other tools can read it)
+✅ Automatic type conversion
+✅ Pretty-printing (human-readable)
+
+Prompt 3: Mapping Data Flow and State Management
+So I take it that Gson converts java to json,  the data in yhe program is saved to json,
+the creation of the gson object is using new Gson(). Now through short and simple answers
+What I'm trying to understand:
+1. What is the complete path data takes from input to output?
+2. How and where is state managed throughout this process?
+3. What transformations happen to the data at each step?
+4. Where are potential points of failure in this data flow?
+5. How does the application handle edge cases or errors?
+
+Path: User → CLI → Manager → Storage (RAM) → Gson → File → Output
+State: Held in HashMap (RAM) and synced to disk after each change
+Transforms: String → Object → JSON → File bytes → Disk
+Failures: Caught, logged, user notified
+Recovery: None (no rollback—data lost if save fails)
+
+Please include any relevant descriptions, design patterns or principles that would help
+me understand the existing code decisions.
+
+DRY (Don't Repeat Yourself)
+Custom Gson serializer/deserializer for LocalDateTime (defined once, used everywhere)
+formatTask() method (single formatting logic)
+
+KISS (Keep It Simple)
+No complex ORM, just HashMap
+No transaction management
+No caching layer
+Direct JSON serialization
+
+3. Deciphering Complex Functions and Algorithms
+Prompt 1: Understand an Algorithm Through Step-by-Step Analysis
