@@ -452,3 +452,48 @@ E. Defensive coding with date validation
 F. Reusing a single “now” value in a rule
 
 Prompt 2: Decipher Code with Unclear Intent or Poor Documentation
+
+Identifying poor naming conventions in the code:
+1. updates is too generic:It does not tell me whether it contains a full task or only partial changes.
+2. new Task("tempTitle") is a poor placeholder pattern:This is a placeholder object used to set a single field, but the name is misleading.
+3. getTaskDetails is redundant:“details” is vague and adds no real meaning, Many codebases use getTaskById or findTask instead
+4. completedRecently is a bit weak in meaning
+5. Task class has a comment: “Getters and Setters”
+      This is a poor naming/comment pattern because:
+      it is not descriptive
+      it is a common boilerplate phrase
+      it adds no value
+
+6. TaskStorage comment at top is noisy
+      In TaskStorage.java, there is: (// src/main/java/taskmanager/storage/TaskStorage.java)
+      This is not a naming problem, but it is a poor code comment because:
+      it duplicates the file path, it is obvious from the file itself and it adds clutter.
+
+Better names usually answer:
+    what is the data?
+    what is the purpose?
+    what does it represent?
+
+Experiments to do to validate the program?
+1. Test the date parsing behavior: Use a valid date and an invalid date.
+2. Check how overdue logic behaves
+3. Validate the status filter precedence
+4. Confirm how priority and status counting works
+5. Probe duplicate tag handling: Add the same tag twice to one task, then inspect the tag list.
+6. Test update behavior with partial data
+Use a task and update only one field:
+priority only
+due date only
+status only
+Then inspect the task afterward.
+7. Inspect behavior on missing or unknown IDs
+
+
+Good safety rules:
+    Prefer a temp folder or disposable file
+    Read first, then write
+    Avoid the main storage path unless you intentionally want to test end-to-end
+    Keep experiments narrow and focused
+    Reset after each experiment
+
+Prompt 3: Understand Complex Logic and Control Flow
