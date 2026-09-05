@@ -383,3 +383,72 @@ Direct JSON serialization
 
 3. Deciphering Complex Functions and Algorithms
 Prompt 1: Understand an Algorithm Through Step-by-Step Analysis
+
+Can you see any algorithms in the code?
+What I do not see
+No sorting algorithm
+No search algorithm
+No recursion
+No graph/tree algorithm
+No complex dynamic programming or pathfinding
+So the code contains algorithmic logic, but it is mainly practical filtering, counting, and validation rather than a named algorithmic challenge.
+
+
+These are the functions that do the algorithmic logic
+listTasks       (conditional filtering)
+getStatistics   (aggregation algorithm.)
+getOverdueTasks (the 3 below are filtering algorithms using streams.)
+getTasksByStatus
+getTasksByPriority
+
+
+1) Breaking down the algorithm into key sections and their purpose:
+The main idea is to scan task data and transform/filter it into useful summaries.
+
+A. Task creation and validation, In TaskManager.java, createTask(...):
+Purpose:
+input normalization
+validation before processing
+preparing data so later algorithmic operations work reliably
+
+B. Filtering tasks, In TaskManager.java, listTasks(...):
+This is a decision tree over a data set. It is algorithmic because it is selecting a subset of items based on conditions.
+
+C. Stream-based selection in storage, In TaskStorage.java:
+This is classic filtering logic: a scan with a predicate.
+return only relevant data
+This is one of the most common “algorithm applications” in real code.
+
+D. Accumulating summary statistics, In TaskManager.java, getStatistics():
+This is a reduction algorithm:
+
+start with an accumulator
+scan every task
+update counts
+
+This is algorithmic in the strongest sense because it transforms a collection into a summary.
+
+E. Deadline logic, In Task.java, isOverdue():
+This is a decision function, but it is still algorithmic logic because it encodes a rule over time-based data.
+
+
+2) I asked the AI assistant to help me in identifying algorithms when reading through code, and this is what it suggested:
+
+The trick is to stop thinking “algorithm = only sorting/searching” and instead think:
+
+“Is this code transforming data according to a rule?”
+What is the input? a list, map, string, date, enum, etc.
+What is the output? filtered list, count, boolean, summary record
+What is the transformation? selection, grouping, merging, comparison, reduction
+How is the data being traversed? loop, stream, recursion, nested checks
+Is there an accumulator? counts, totals, running result, map of buckets
+
+3) Non-obvious optimizations or tricks:
+A. Short-circuiting in filtering: This is efficient because it avoids extra work, If showOverdue is true, it returns immediately without scanning for status or priority.
+B. Using maps to pre-initialize categories
+C. Stream filters are compact but still linear
+D. Avoiding duplicate tags
+E. Defensive coding with date validation
+F. Reusing a single “now” value in a rule
+
+Prompt 2: Decipher Code with Unclear Intent or Poor Documentation
